@@ -39,7 +39,7 @@ resourceMetrics:
                   timeUnixNano: "2000000"
               isMonotonic: true
             unit: By
-          - description: Time spent by tasks of the cgroup in kernel mode (Linux).  Time spent by all container processes in kernel mode (Windows).
+          - description: Time spent by tasks of the cgroup in kernel mode.
             name: container.cpu.usage.kernelmode
             sum:
               aggregationTemporality: 2
@@ -59,7 +59,7 @@ resourceMetrics:
                   timeUnixNano: "2000000"
               isMonotonic: true
             unit: ns
-          - description: Time spent by tasks of the cgroup in user mode (Linux).  Time spent by all container processes in user mode (Windows).
+          - description: Time spent by tasks of the cgroup in user mode.
             name: container.cpu.usage.usermode
             sum:
               aggregationTemporality: 2
@@ -86,7 +86,7 @@ resourceMetrics:
                   startTimeUnixNano: "1000000"
                   timeUnixNano: "2000000"
             unit: By
-          - description: Percentage of memory used. Not supported on Windows.
+          - description: Percentage of memory used.
             gauge:
               dataPoints:
                 - asDouble: 0.004020398834981384
@@ -94,7 +94,7 @@ resourceMetrics:
                   timeUnixNano: "2000000"
             name: container.memory.percent
             unit: "1"
-          - description: Memory limit of the container. Not supported on Windows.
+          - description: Memory limit of the container.
             name: container.memory.usage.limit
             sum:
               aggregationTemporality: 2

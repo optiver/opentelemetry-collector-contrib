@@ -265,7 +265,7 @@ metrics:
     enabled: true
     stability: development
     description: >-
-      Time spent by tasks of the cgroup in kernel mode (Linux).  Time spent by all container processes in kernel mode (Windows).
+      Time spent by tasks of the cgroup in kernel mode.
     unit: ns
     sum:
       value_type: int
@@ -305,7 +305,7 @@ metrics:
     enabled: true
     stability: development
     description: >-
-      Time spent by tasks of the cgroup in user mode (Linux).  Time spent by all container processes in user mode (Windows).
+      Time spent by tasks of the cgroup in user mode.
     unit: ns
     sum:
       value_type: int
@@ -436,7 +436,7 @@ metrics:
   container.memory.percent:
     enabled: true
     stability: development
-    description: "Percentage of memory used. Not supported on Windows."
+    description: "Percentage of memory used."
     unit: "1"
     gauge:
       value_type: double
@@ -518,7 +518,7 @@ metrics:
   container.memory.total_cache:
     enabled: true
     stability: development
-    description: "Total amount of memory used by the processes of this cgroup (and descendants) that can be associated with a block on a block device. Also accounts for memory used by tmpfs (Only available with cgroups v1). Not supported on Windows."
+    description: "Total amount of memory used by the processes of this cgroup (and descendants) that can be associated with a block on a block device. Also accounts for memory used by tmpfs (Only available with cgroups v1)."
     unit: By
     sum:
       value_type: int
@@ -645,7 +645,7 @@ metrics:
   container.memory.usage.limit:
     enabled: true
     stability: development
-    description: "Memory limit of the container. Not supported on Windows."
+    description: "Memory limit of the container."
     unit: By
     sum:
       value_type: int
@@ -703,7 +703,7 @@ metrics:
   container.network.io.usage.rx_errors:
     enabled: false
     stability: development
-    description: "Received errors. Not supported on Windows."
+    description: "Received errors."
     unit: "{errors}"
     sum:
       value_type: int
@@ -747,7 +747,7 @@ metrics:
   container.network.io.usage.tx_errors:
     enabled: false
     stability: development
-    description: "Sent errors. Not supported on Windows."
+    description: "Sent errors."
     unit: "{errors}"
     sum:
       value_type: int

@@ -27,7 +27,7 @@ resource usage of cpu, memory, network, and the
 
 The following settings are optional:
 
-- `endpoint` (default = `unix:///var/run/docker.sock` (Linux) , default = `npipe:////./pipe/docker_engine` (Windows) ): Address to reach the desired Docker daemon.
+- `endpoint` (default = `unix:///var/run/docker.sock`): Address to reach the desired Docker daemon.
 - `collection_interval` (default = `10s`): The interval at which to gather container stats.
 - `initial_delay` (default = `1s`): defines how long this receiver waits before starting.
 - `container_labels_to_metric_labels` (no default): A map of Docker container label names whose label values to use
@@ -79,10 +79,7 @@ with detailed sample configurations in [testdata/config.yaml](./testdata/config.
 
 ### Requirements
 
-This receiver requires access to the Docker daemon socket to query container statistics. The Docker socket requires specific permissions:
-
-- **Linux** (`/var/run/docker.sock`): Accessible by `root` user or members of the `docker` group
-- **Windows** (`npipe:////./pipe/docker_engine`): Requires appropriate named pipe permissions
+This receiver requires access to the Docker daemon socket to query container statistics. The socket (`/var/run/docker.sock`) is accessible by the `root` user or members of the `docker` group.
 
 Since version 0.40.0, official OpenTelemetry Collector images run as a non-root user for security. This creates a permission conflict when accessing the Docker socket.
 
@@ -123,51 +120,3 @@ For enhanced security, consider:
 - Running this receiver in an isolated collector instance with elevated privileges that only exports data (does not expose receiver ports like OTLP or Zipkin), forwarding metrics to your main collector via OTLP. This reduces the attack surface and RCE risk on the privileged container.
 
 For more information, see [issue #11791](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/11791).
-
-
-## Deprecations
-
-### Transition to cpu utilization metric name aligned with OpenTelemetry specification
-
-The Docker Stats receiver has been emitting the following cpu memory metric:
-
-- [container.cpu.percent] for the percentage of CPU used by the container,
-
-This is in conflict with the OpenTelemetry specification,
-which defines [container.cpu.utilization] as the name for this metric.
-
-To align the emitted metric names with the OpenTelemetry specification,
-the following process will be followed to phase out the old metrics:
-
-- Between `v0.79.0` and `v0.86.0`, the new metric is introduced and the old metric is marked as deprecated.
-  Only the old metric are emitted by default.
-- In `v0.88.0`, the old metric is disabled and the new one enabled by default.
-- In `v0.89.0` and up, the old metric is removed.
-
-To change the enabled state for the specific metrics, use the standard configuration options that are available for all metrics.
-
-Here's an example configuration to disable the old metrics and enable the new metrics:
-
-```yaml
-receivers:
-  docker_stats:
-    metrics:
-      container.cpu.percent:
-        enabled: false
-      container.cpu.utilization:
-        enabled: true
-
-```
-
-### Migrating from ScraperV1 to ScraperV2
-
-*Note: These changes are now in effect and ScraperV1 have been removed as of v0.71.*
-
-There are some breaking changes from ScraperV1 to ScraperV2. The work done for these changes is tracked in [#9794](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/9794).
-
-| Breaking Change                     | Action                                                                  |
-|-------------------------------------|-------------------------------------------------------------------------|
-| Many metrics are no longer emitted by default. | See [documentation.md](./documentation.md) to see which metrics are enabled by default. Enable/disable as desired. |
-| BlockIO metrics names changed. The type of operation is no longer in the metric name suffix, and is now in an attribute. For example `container.blockio.io_merged_recursive.read` becomes `container.blockio.io_merged_recursive` with an `operation:read` attribute. | Be aware of the metric name changes and make any adjustments to what your downstream expects from BlockIO metrics. |
-| Memory metrics measured in Bytes are now [non-monotonic sums](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/data-model.md#opentelemetry-protocol-data-model-consumer-recommendations) instead of gauges. | Most likely there is no action. The aggregation type is different but the values are the same. Be aware of how your downstream handles gauges vs non-monotonic sums. |
-| Config option `provide_per_core_cpu_metrics` has been removed. | Enable the `container.cpu.usage.percpu` metric as per [documentation.md](./documentation.md). |

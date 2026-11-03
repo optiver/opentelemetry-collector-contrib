@@ -170,7 +170,7 @@ resourceMetrics:
                   timeUnixNano: "2000000"
               isMonotonic: true
             unit: ns
-          - description: Time spent by tasks of the cgroup in kernel mode (Linux).  Time spent by all container processes in kernel mode (Windows).
+          - description: Time spent by tasks of the cgroup in kernel mode.
             name: container.cpu.usage.kernelmode
             sum:
               aggregationTemporality: 2
@@ -200,7 +200,7 @@ resourceMetrics:
                   timeUnixNano: "2000000"
               isMonotonic: true
             unit: ns
-          - description: Time spent by tasks of the cgroup in user mode (Linux).  Time spent by all container processes in user mode (Windows).
+          - description: Time spent by tasks of the cgroup in user mode.
             name: container.cpu.usage.usermode
             sum:
               aggregationTemporality: 2
@@ -282,7 +282,7 @@ resourceMetrics:
                   startTimeUnixNano: "1000000"
                   timeUnixNano: "2000000"
             unit: By
-          - description: Percentage of memory used. Not supported on Windows.
+          - description: Percentage of memory used.
             gauge:
               dataPoints:
                 - asDouble: 0.016875995187363255
@@ -319,7 +319,7 @@ resourceMetrics:
                   startTimeUnixNano: "1000000"
                   timeUnixNano: "2000000"
             unit: By
-          - description: Memory limit of the container. Not supported on Windows.
+          - description: Memory limit of the container.
             name: container.memory.usage.limit
             sum:
               aggregationTemporality: 2
@@ -374,7 +374,7 @@ resourceMetrics:
                   timeUnixNano: "2000000"
               isMonotonic: true
             unit: '{packets}'
-          - description: Received errors. Not supported on Windows.
+          - description: Received errors.
             name: container.network.io.usage.rx_errors
             sum:
               aggregationTemporality: 2
@@ -430,7 +430,7 @@ resourceMetrics:
                   timeUnixNano: "2000000"
               isMonotonic: true
             unit: '{packets}'
-          - description: Sent errors. Not supported on Windows.
+          - description: Sent errors.
             name: container.network.io.usage.tx_errors
             sum:
               aggregationTemporality: 2

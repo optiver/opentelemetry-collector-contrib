@@ -1016,7 +1016,7 @@ func TestMetricsBuilder(t *testing.T) {
 					validatedMetrics["container.cpu.usage.kernelmode"] = true
 					assert.Equal(t, pmetric.MetricTypeSum, mi.Type())
 					assert.Equal(t, 1, mi.Sum().DataPoints().Len())
-					assert.Equal(t, "Time spent by tasks of the cgroup in kernel mode (Linux).  Time spent by all container processes in kernel mode (Windows).", mi.Description())
+					assert.Equal(t, "Time spent by tasks of the cgroup in kernel mode.", mi.Description())
 					assert.Equal(t, "ns", mi.Unit())
 					assert.True(t, mi.Sum().IsMonotonic())
 					assert.Equal(t, pmetric.AggregationTemporalityCumulative, mi.Sum().AggregationTemporality())
@@ -1104,7 +1104,7 @@ func TestMetricsBuilder(t *testing.T) {
 					validatedMetrics["container.cpu.usage.usermode"] = true
 					assert.Equal(t, pmetric.MetricTypeSum, mi.Type())
 					assert.Equal(t, 1, mi.Sum().DataPoints().Len())
-					assert.Equal(t, "Time spent by tasks of the cgroup in user mode (Linux).  Time spent by all container processes in user mode (Windows).", mi.Description())
+					assert.Equal(t, "Time spent by tasks of the cgroup in user mode.", mi.Description())
 					assert.Equal(t, "ns", mi.Unit())
 					assert.True(t, mi.Sum().IsMonotonic())
 					assert.Equal(t, pmetric.AggregationTemporalityCumulative, mi.Sum().AggregationTemporality())
@@ -1298,7 +1298,7 @@ func TestMetricsBuilder(t *testing.T) {
 					validatedMetrics["container.memory.percent"] = true
 					assert.Equal(t, pmetric.MetricTypeGauge, mi.Type())
 					assert.Equal(t, 1, mi.Gauge().DataPoints().Len())
-					assert.Equal(t, "Percentage of memory used. Not supported on Windows.", mi.Description())
+					assert.Equal(t, "Percentage of memory used.", mi.Description())
 					assert.Equal(t, "1", mi.Unit())
 					dp := mi.Gauge().DataPoints().At(0)
 					assert.Equal(t, start, dp.StartTimestamp())
@@ -1422,7 +1422,7 @@ func TestMetricsBuilder(t *testing.T) {
 					validatedMetrics["container.memory.total_cache"] = true
 					assert.Equal(t, pmetric.MetricTypeSum, mi.Type())
 					assert.Equal(t, 1, mi.Sum().DataPoints().Len())
-					assert.Equal(t, "Total amount of memory used by the processes of this cgroup (and descendants) that can be associated with a block on a block device. Also accounts for memory used by tmpfs (Only available with cgroups v1). Not supported on Windows.", mi.Description())
+					assert.Equal(t, "Total amount of memory used by the processes of this cgroup (and descendants) that can be associated with a block on a block device. Also accounts for memory used by tmpfs (Only available with cgroups v1).", mi.Description())
 					assert.Equal(t, "By", mi.Unit())
 					assert.False(t, mi.Sum().IsMonotonic())
 					assert.Equal(t, pmetric.AggregationTemporalityCumulative, mi.Sum().AggregationTemporality())
@@ -1618,7 +1618,7 @@ func TestMetricsBuilder(t *testing.T) {
 					validatedMetrics["container.memory.usage.limit"] = true
 					assert.Equal(t, pmetric.MetricTypeSum, mi.Type())
 					assert.Equal(t, 1, mi.Sum().DataPoints().Len())
-					assert.Equal(t, "Memory limit of the container. Not supported on Windows.", mi.Description())
+					assert.Equal(t, "Memory limit of the container.", mi.Description())
 					assert.Equal(t, "By", mi.Unit())
 					assert.False(t, mi.Sum().IsMonotonic())
 					assert.Equal(t, pmetric.AggregationTemporalityCumulative, mi.Sum().AggregationTemporality())
@@ -1767,7 +1767,7 @@ func TestMetricsBuilder(t *testing.T) {
 						validatedMetrics["container.network.io.usage.rx_errors"] = true
 						assert.Equal(t, pmetric.MetricTypeSum, mi.Type())
 						assert.Equal(t, 1, mi.Sum().DataPoints().Len())
-						assert.Equal(t, "Received errors. Not supported on Windows.", mi.Description())
+						assert.Equal(t, "Received errors.", mi.Description())
 						assert.Equal(t, "{errors}", mi.Unit())
 						assert.True(t, mi.Sum().IsMonotonic())
 						assert.Equal(t, pmetric.AggregationTemporalityCumulative, mi.Sum().AggregationTemporality())
@@ -1786,7 +1786,7 @@ func TestMetricsBuilder(t *testing.T) {
 						// 2 points: the merged one above, plus one with a different timestamp that must not have merged with it.
 						assert.Equal(t, 2, mi.Sum().DataPoints().Len())
 						assert.Equal(t, ts+1, mi.Sum().DataPoints().At(1).Timestamp())
-						assert.Equal(t, "Received errors. Not supported on Windows.", mi.Description())
+						assert.Equal(t, "Received errors.", mi.Description())
 						assert.Equal(t, "{errors}", mi.Unit())
 						assert.True(t, mi.Sum().IsMonotonic())
 						assert.Equal(t, pmetric.AggregationTemporalityCumulative, mi.Sum().AggregationTemporality())
@@ -1951,7 +1951,7 @@ func TestMetricsBuilder(t *testing.T) {
 						validatedMetrics["container.network.io.usage.tx_errors"] = true
 						assert.Equal(t, pmetric.MetricTypeSum, mi.Type())
 						assert.Equal(t, 1, mi.Sum().DataPoints().Len())
-						assert.Equal(t, "Sent errors. Not supported on Windows.", mi.Description())
+						assert.Equal(t, "Sent errors.", mi.Description())
 						assert.Equal(t, "{errors}", mi.Unit())
 						assert.True(t, mi.Sum().IsMonotonic())
 						assert.Equal(t, pmetric.AggregationTemporalityCumulative, mi.Sum().AggregationTemporality())
@@ -1970,7 +1970,7 @@ func TestMetricsBuilder(t *testing.T) {
 						// 2 points: the merged one above, plus one with a different timestamp that must not have merged with it.
 						assert.Equal(t, 2, mi.Sum().DataPoints().Len())
 						assert.Equal(t, ts+1, mi.Sum().DataPoints().At(1).Timestamp())
-						assert.Equal(t, "Sent errors. Not supported on Windows.", mi.Description())
+						assert.Equal(t, "Sent errors.", mi.Description())
 						assert.Equal(t, "{errors}", mi.Unit())
 						assert.True(t, mi.Sum().IsMonotonic())
 						assert.Equal(t, pmetric.AggregationTemporalityCumulative, mi.Sum().AggregationTemporality())

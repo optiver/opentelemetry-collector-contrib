@@ -32,7 +32,7 @@ More docs for [cgroups v1](https://www.kernel.org/doc/Documentation/cgroup-v1/bl
 
 ### container.cpu.usage.kernelmode
 
-Time spent by tasks of the cgroup in kernel mode (Linux).  Time spent by all container processes in kernel mode (Windows).
+Time spent by tasks of the cgroup in kernel mode.
 
 | Unit | Metric Type | Value Type | Aggregation Temporality | Monotonic | Stability |
 | ---- | ----------- | ---------- | ----------------------- | --------- | --------- |
@@ -48,7 +48,7 @@ Total CPU time consumed.
 
 ### container.cpu.usage.usermode
 
-Time spent by tasks of the cgroup in user mode (Linux).  Time spent by all container processes in user mode (Windows).
+Time spent by tasks of the cgroup in user mode.
 
 | Unit | Metric Type | Value Type | Aggregation Temporality | Monotonic | Stability |
 | ---- | ----------- | ---------- | ----------------------- | --------- | --------- |
@@ -74,7 +74,7 @@ Amount of memory used to cache filesystem data, including tmpfs and shared memor
 
 ### container.memory.percent
 
-Percentage of memory used. Not supported on Windows.
+Percentage of memory used.
 
 | Unit | Metric Type | Value Type | Stability |
 | ---- | ----------- | ---------- | --------- |
@@ -82,7 +82,7 @@ Percentage of memory used. Not supported on Windows.
 
 ### container.memory.total_cache
 
-Total amount of memory used by the processes of this cgroup (and descendants) that can be associated with a block on a block device. Also accounts for memory used by tmpfs (Only available with cgroups v1). Not supported on Windows.
+Total amount of memory used by the processes of this cgroup (and descendants) that can be associated with a block on a block device. Also accounts for memory used by tmpfs (Only available with cgroups v1).
 
 | Unit | Metric Type | Value Type | Aggregation Temporality | Monotonic | Stability |
 | ---- | ----------- | ---------- | ----------------------- | --------- | --------- |
@@ -90,7 +90,7 @@ Total amount of memory used by the processes of this cgroup (and descendants) th
 
 ### container.memory.usage.limit
 
-Memory limit of the container. Not supported on Windows.
+Memory limit of the container.
 
 | Unit | Metric Type | Value Type | Aggregation Temporality | Monotonic | Stability |
 | ---- | ----------- | ---------- | ----------------------- | --------- | --------- |
@@ -658,7 +658,7 @@ Number of bytes of file/anon cache that are queued for syncing to disk in this c
 
 ### container.network.io.usage.rx_errors
 
-Received errors. Not supported on Windows.
+Received errors.
 
 | Unit | Metric Type | Value Type | Aggregation Temporality | Monotonic | Stability |
 | ---- | ----------- | ---------- | ----------------------- | --------- | --------- |
@@ -686,7 +686,7 @@ Packets received.
 
 ### container.network.io.usage.tx_errors
 
-Sent errors. Not supported on Windows.
+Sent errors.
 
 | Unit | Metric Type | Value Type | Aggregation Temporality | Monotonic | Stability |
 | ---- | ----------- | ---------- | ----------------------- | --------- | --------- |

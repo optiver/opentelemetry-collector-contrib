@@ -1536,7 +1536,7 @@ type metricContainerCPUUsageKernelmode struct {
 // init fills container.cpu.usage.kernelmode metric with initial data.
 func (m *metricContainerCPUUsageKernelmode) init() {
 	m.data.SetName("container.cpu.usage.kernelmode")
-	m.data.SetDescription("Time spent by tasks of the cgroup in kernel mode (Linux).  Time spent by all container processes in kernel mode (Windows).")
+	m.data.SetDescription("Time spent by tasks of the cgroup in kernel mode.")
 	m.data.SetUnit("ns")
 	m.data.SetEmptySum()
 	m.data.Sum().SetIsMonotonic(true)
@@ -1785,7 +1785,7 @@ type metricContainerCPUUsageUsermode struct {
 // init fills container.cpu.usage.usermode metric with initial data.
 func (m *metricContainerCPUUsageUsermode) init() {
 	m.data.SetName("container.cpu.usage.usermode")
-	m.data.SetDescription("Time spent by tasks of the cgroup in user mode (Linux).  Time spent by all container processes in user mode (Windows).")
+	m.data.SetDescription("Time spent by tasks of the cgroup in user mode.")
 	m.data.SetUnit("ns")
 	m.data.SetEmptySum()
 	m.data.Sum().SetIsMonotonic(true)
@@ -2511,7 +2511,7 @@ type metricContainerMemoryPercent struct {
 // init fills container.memory.percent metric with initial data.
 func (m *metricContainerMemoryPercent) init() {
 	m.data.SetName("container.memory.percent")
-	m.data.SetDescription("Percentage of memory used. Not supported on Windows.")
+	m.data.SetDescription("Percentage of memory used.")
 	m.data.SetUnit("1")
 	m.data.SetEmptyGauge()
 }
@@ -2977,7 +2977,7 @@ type metricContainerMemoryTotalCache struct {
 // init fills container.memory.total_cache metric with initial data.
 func (m *metricContainerMemoryTotalCache) init() {
 	m.data.SetName("container.memory.total_cache")
-	m.data.SetDescription("Total amount of memory used by the processes of this cgroup (and descendants) that can be associated with a block on a block device. Also accounts for memory used by tmpfs (Only available with cgroups v1). Not supported on Windows.")
+	m.data.SetDescription("Total amount of memory used by the processes of this cgroup (and descendants) that can be associated with a block on a block device. Also accounts for memory used by tmpfs (Only available with cgroups v1).")
 	m.data.SetUnit("By")
 	m.data.SetEmptySum()
 	m.data.Sum().SetIsMonotonic(false)
@@ -3705,7 +3705,7 @@ type metricContainerMemoryUsageLimit struct {
 // init fills container.memory.usage.limit metric with initial data.
 func (m *metricContainerMemoryUsageLimit) init() {
 	m.data.SetName("container.memory.usage.limit")
-	m.data.SetDescription("Memory limit of the container. Not supported on Windows.")
+	m.data.SetDescription("Memory limit of the container.")
 	m.data.SetUnit("By")
 	m.data.SetEmptySum()
 	m.data.Sum().SetIsMonotonic(false)
@@ -4101,7 +4101,7 @@ type metricContainerNetworkIoUsageRxErrors struct {
 // init fills container.network.io.usage.rx_errors metric with initial data.
 func (m *metricContainerNetworkIoUsageRxErrors) init() {
 	m.data.SetName("container.network.io.usage.rx_errors")
-	m.data.SetDescription("Received errors. Not supported on Windows.")
+	m.data.SetDescription("Received errors.")
 	m.data.SetUnit("{errors}")
 	m.data.SetEmptySum()
 	m.data.Sum().SetIsMonotonic(true)
@@ -4473,7 +4473,7 @@ type metricContainerNetworkIoUsageTxErrors struct {
 // init fills container.network.io.usage.tx_errors metric with initial data.
 func (m *metricContainerNetworkIoUsageTxErrors) init() {
 	m.data.SetName("container.network.io.usage.tx_errors")
-	m.data.SetDescription("Sent errors. Not supported on Windows.")
+	m.data.SetDescription("Sent errors.")
 	m.data.SetUnit("{errors}")
 	m.data.SetEmptySum()
 	m.data.Sum().SetIsMonotonic(true)
